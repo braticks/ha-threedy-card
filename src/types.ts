@@ -1,5 +1,6 @@
 export enum ThreedyPrinter {
     I3 = "I3",
+    CoreXY = "CoreXY",
     Cantilever = "Cantilever"
 }
 
@@ -30,6 +31,7 @@ export type Enum = {
 
 export type ThreedyConfig = {
 
+    [key: string]: any,
     type: string,
     base_entity?: string,
     name?: string,

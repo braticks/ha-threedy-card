@@ -57,7 +57,7 @@ const Configurator = ({ hass, config, threedy }) => {
                 />
 
                 {
-                    modifiedConfig ? modifiedConfig.base_entity ? (
+                    modifiedConfig ? (modifiedConfig.base_entity || modifiedConfig.sensors) ? (
                         <>
                             <p style={{ ...styles.Label }}>Printer Type</p>
                             <Select
@@ -98,7 +98,7 @@ const Configurator = ({ hass, config, threedy }) => {
             </div>
 
             {
-                modifiedConfig ? modifiedConfig.base_entity ? (
+                modifiedConfig ? (modifiedConfig.base_entity || modifiedConfig.sensors) ? (
                     <motion.div
                         animate={{
                             left: advancedShown ? 0 : '-100%',
@@ -160,6 +160,9 @@ const Configurator = ({ hass, config, threedy }) => {
                                         'Yes': true
                                     }}
                                 />
+
+                                <p style={{ ...styles.Label }}>Show Seconds</p>
+                                <FewSelector onUpdate={(key, value) => _updateValue('show_seconds', value)} initial={config.show_seconds !== false} options={{'No': false, 'Yes': true}} />
 
                                 <p style={{ ...styles.Label }}>Round Temperature</p>
                                 <FewSelector

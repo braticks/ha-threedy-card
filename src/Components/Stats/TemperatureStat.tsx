@@ -61,7 +61,8 @@ const temperature = (
     config: ThreedyConfig
 ) => {
 
-    const t: number = parseFloat(temperatureEntity.state);
+    if (!temperatureEntity || !Number.isFinite(Number(temperatureEntity.state))) return "—";
+    const t: number = Number(temperatureEntity.state);
     const u: ThreedyTemperatureUnit = temperatureUnitFromEntity(temperatureEntity);
     const tc: number = convertTemperature(t, u, config.temperature_unit || u);
 
@@ -78,7 +79,7 @@ type TemperatureStatProps = {
     config: ThreedyConfig
 }
 
-const TemperatureStat: React.FC<TemperatureStatProps> = ({name, temperatureEntity, config}) => {
+const TemperatureStat: React.FC<TemperatureStatProps> = ({name, temperatureEntity, config, attr}) => {
 
 
     return (
@@ -86,7 +87,7 @@ const TemperatureStat: React.FC<TemperatureStatProps> = ({name, temperatureEntit
             name={name}
             value={
                 temperature(
-                    temperatureEntity,
+                    attr != null ? {...temperatureEntity, state: String(attr)} : temperatureEntity,
                     config
                 )
             }

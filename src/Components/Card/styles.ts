@@ -4,15 +4,16 @@ const styles = {
     Card: {
         display: 'flex',
         flexDirection: 'row',
-        justifyCcontent: 'center',
+        justifyContent: 'center',
         alignItems: 'stretch',
-        boxSizing: 'borderBox',
+        boxSizing: 'border-box',
         background: 'var( --ha-card-background, var(--card-background-color, white) )',
         position: 'relative',
         overflow: 'hidden'
     },
     Section: {
         boxSizing: 'border-box',
+        minWidth: 0,
         padding: '0 16px 32px 16px'
     },
     Default: {

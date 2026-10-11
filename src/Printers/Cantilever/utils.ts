@@ -2,7 +2,7 @@ import { Scale } from '../../Utils/Scale';
 
 const getDimensions = (config, bounds, haScaleFactor) => {
 
-    const scale = new Scale( (bounds.height / (config.ZAxis.height + config.Bottom.height)) * haScaleFactor);
+    const scale = new Scale( Math.min(bounds.height / (config.ZAxis.height + config.Bottom.height), bounds.width / Math.max(config.Bottom.width, config.XAxis.width)) * haScaleFactor);
 
     /* Bottom */
     const B_W = scale.val( config.Bottom.width );

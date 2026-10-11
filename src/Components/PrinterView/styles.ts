@@ -1,6 +1,8 @@
 const styles = {
     PrinterView: {
-        height: '100%',
+        height: 260,
+        minWidth: 0,
+        overflow: 'hidden',
         boxSizing: 'border-box'
     }
 }

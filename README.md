@@ -1,3 +1,9 @@
+# Threedy — braticks fork
+
+Maintenance beta **2026.10.0-beta.1**. Fixes duration units and rounding, printer states/animations and layout; adds an enclosed CoreXY visual. Based on [xZetsubou/ha-threedy-card](https://github.com/xZetsubou/ha-threedy-card).
+
+[Elegoo configuration](examples/elegoo-centauri-carbon-2.yaml) · [Issue review and verification limits](ISSUE_REVIEW.md) · [Installation in Lithuanian](BETA_INSTALL_LT.md).
+
 # threedy
 ## Home Asssistant card for Any 3D printers
 
@@ -50,12 +56,12 @@
 ### Method 1: HACS
 1. Open _HACS_ and navigate to _Frontend_ Section
 2. Open the Overflow Menu (⋮) in the top right corner and click on _Custom repositories_
-3. Paste `https://github.com/xZetsubou/ha-threedy-card` into the input field and select `Lovelace` from the dropdown
+3. Paste `https://github.com/braticks/ha-threedy-card` into the input field and select `Lovelace` from the dropdown
 4. Click the Install Button on the highlighted Card titled _threedy_
 
 ### Method 2: Manual
 
-1. Download ```threedy-card.js``` from the releases section.
+1. Download [`threedy-card.js`](https://github.com/braticks/ha-threedy-card/raw/refs/heads/master/dist/threedy-card.js) and its adjacent `threedy-card.js.LICENSE.txt` from `dist/`.
 2. Either:
   * Move to the ```www``` folder of your Home Assistant instance
   * Or copy the ffle's contents via the file editor.
@@ -280,3 +286,22 @@ card:
 ![ShowHide](https://media.giphy.com/media/14VgtFSulJkOaRiZFo/giphy.gif)
 
 </details>
+
+## Maintenance beta (2026.10.0-beta.1)
+
+See [ISSUE_REVIEW.md](ISSUE_REVIEW.md) for issue coverage and limitations, and [BETA_INSTALL_LT.md](BETA_INSTALL_LT.md) for manual beta installation. Upstream authors and MIT package metadata are retained.
+
+New options:
+
+- `show_seconds: false`: exact hours/minutes for Elapsed/Remaining.
+- `sensors.<key>.unit`: explicit numeric duration unit (s/min/h/ms/d); absent units use the entity's HA unit, then seconds. Attribute values default to seconds unless explicitly configured.
+- `sensors.<key>.precision`: decimal precision for custom numeric fields; legacy *Minutes and min-unit fields default to 0.
+- `sensors.<time key>.interpolate: true`: optional interpolation from last_updated; default uses duration snapshots as reported by HA.
+- `printing_states`: override animation states, default printing/printing from sd/running/resuming (case insensitive).
+- `states_show` / `states_hide`: explicit expansion/collapse states. Hide wins, then show, then always_show/user toggle/printing.
+- `printer_type: CoreXY`: enclosed generic CoreXY graphic. CoreXY also accepts progress_color.
+- `show_header: false`, `show_stats: false`: visual-only mode (combine with always_show).
+
+Datetime Elapsed sensors represent start times; datetime ETA/Remaining sensors represent finish times. Numeric sensors represent durations. `HH:MM[:SS]` strings are interpreted as durations. Unsupported/non-finite values show an em dash. Scale values above 1 clamp to 1; the viewport no longer grows in a ResizeObserver loop.
+
+Build and regression tests: `npm ci && npm test && npm run build`.

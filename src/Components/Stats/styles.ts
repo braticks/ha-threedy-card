@@ -46,7 +46,9 @@ const styles = {
     StatText: {
         margin: 0,
         fontSize: 16,
-        display: 'inline-block'
+        display: 'inline-block',
+        minWidth: 0,
+        overflowWrap: 'anywhere'
     },
     Condition: {
         fontWeight: 'bold'

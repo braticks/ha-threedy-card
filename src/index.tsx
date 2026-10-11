@@ -29,6 +29,8 @@ class ThreedyEditor extends HTMLElement {
         this._render();
     }
 
+    disconnectedCallback() { ReactDOM.unmountComponentAtNode(this); }
+
     _render() {
         if (!this._hass)
             return
@@ -41,7 +43,7 @@ class ThreedyEditor extends HTMLElement {
 
 }
 
-customElements.define('threedy-editor', ThreedyEditor);
+if (!customElements.get('threedy-editor')) customElements.define('threedy-editor', ThreedyEditor);
 
 
 class ThreedyCard extends HTMLElement {
@@ -60,6 +62,7 @@ class ThreedyCard extends HTMLElement {
 
 
     _render() {
+        if (!this.isConnected) return;
         if (!this._hass || !this._config || !this._hass.states)
             return ReactDOM.render(<NotConfigured />, this);
 
@@ -91,13 +94,13 @@ class ThreedyCard extends HTMLElement {
 
 }
 
-customElements.define('threedy-card', ThreedyCard);
+if (!customElements.get('threedy-card')) customElements.define('threedy-card', ThreedyCard);
 
 
 // @ts-ignore
 window.customCards = window.customCards || [];
 // @ts-ignore
-window.customCards.push({
+if (!window.customCards.some(card => card.type === 'threedy-card')) window.customCards.push({
     type: 'threedy-card',
     name: "Threedy Card",
     preview: false,

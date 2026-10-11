@@ -3,7 +3,7 @@ import { Scale } from '../../Utils/Scale';
 const getDimensions = (config, bounds, haScaleFactor) => {
 
     /* We estimate the initial scale factor based on the height of the frame, then compound with set factor */
-    const scale = new Scale( (bounds.height / (config.top.height + config.bottom.height + config.left.height)) * haScaleFactor );
+    const scale = new Scale( Math.min(bounds.height / (config.top.height + config.bottom.height + config.left.height), bounds.width / Math.max(config.top.width, config.xAxis.width)) * haScaleFactor );
 
 
     /* Frame */
