@@ -50,6 +50,9 @@ card.setConfig({type:'custom:threedy-card',always_show:true,monitored:['Remainin
 card.hass={states:{'sensor.time':entity('285','min'),'sensor.status':entity('printing')},themes:{darkMode:true}};
 document.body.appendChild(card);
 assert(card.textContent.includes('4h 45m')); assert(!card.textContent.includes('NaN'));
+card.setConfig({type:'custom:threedy-card',compact:true,printer_type:'CoreXY',always_show:true,monitored:['Remaining'],sensors:{Remaining:{entity:'sensor.time'},Status:{entity:'sensor.status'}}});
+assert(card.querySelector('[aria-label="CoreXY printer"]'));
+assert(card.innerHTML.includes('height: 170px'));assert(card.textContent.includes('4h 45m'));
 const button=card.querySelector('button'); button.click();
 card.hass={states:{'sensor.status':entity('unavailable')},themes:{darkMode:true}};
 assert(!card.textContent.includes('NaN'));

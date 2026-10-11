@@ -45,7 +45,7 @@ const styles = {
     },
     StatText: {
         margin: 0,
-        fontSize: 16,
+        fontSize: 'var(--threedy-stat-font, 16px)',
         display: 'inline-block',
         minWidth: 0,
         overflowWrap: 'anywhere'

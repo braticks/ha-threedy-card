@@ -43,6 +43,7 @@ const Card = ({ }) => {
 
     const theme = config.theme || 'Default';
     const vertical = config.vertical;
+    const compact = config.compact === true;
     const round = config.round;
     const percent = percentComplete(hass, config);
 
@@ -72,6 +73,7 @@ const Card = ({ }) => {
             transition={{ ease: "easeInOut", duration: 0.25 }}
             style={{
                 ...styles.Card,
+                '--threedy-stat-font': compact ? '13px' : '16px',
                 ...styles[theme],
                 fontFamily: config.font || 'sans-serif',
                 boxShadow: theme === 'Neumorphic' ? neumorphicShadow : defaultShadow
@@ -105,7 +107,7 @@ const Card = ({ }) => {
                     }
 
                     <button
-                        style={{ ...styles.NameStatus }}
+                        style={{ ...styles.NameStatus, padding: compact ? '10px 12px' : 24 }}
                         onClick={() => setHiddenOveride(!hiddenOverride)}
                     >
                         <div
@@ -114,7 +116,7 @@ const Card = ({ }) => {
                                 backgroundColor: statusColor
                             }}
                         />
-                        <p style={{ ...styles.HeaderText }}>{ config.name || '(no name)' }</p>
+                        <p style={{ ...styles.HeaderText, fontSize: compact ? 17 : 22 }}>{ config.name || '(no name)' }</p>
                     </button>
 
                     {
@@ -143,7 +145,7 @@ const Card = ({ }) => {
                     animate={!config.always_show ? { height: hidden ? 0.0 : 'auto', opacity: hidden ? 0.0 : 1.0, scale: hidden ? 0.0 : 1.0 } : {}}
                     transition={!config.always_show ? { ease: "easeInOut", duration: 0.25 } : {}}
                 >
-                    <div style={{ ...styles.Section, width: vertical || config.show_stats === false ? '100%' : '50%', height: vertical ? 'auto' : '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', paddingLeft: vertical ? 64 : 16, paddingRight: vertical ? 64 : 16 }}>
+                    <div style={{ ...styles.Section, width: vertical || config.show_stats === false ? '100%' : compact ? '32%' : '50%', height: vertical ? 'auto' : '100%', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', paddingBottom: compact ? 10 : 32, paddingLeft: compact ? 8 : vertical ? 64 : 16, paddingRight: compact ? 8 : vertical ? 64 : 16 }}>
                         <PrinterView
                             toggleVideo={toggleVideo}
                             hasCamera={config.camera_entity !== undefined}
@@ -151,7 +153,7 @@ const Card = ({ }) => {
                         />
                         {
                             vertical ? (
-                                <p style={{ width: '50%', fontSize: 36, textAlign: 'center', fontWeight: 'bold' }}>{round ? Math.round(percent) : percent}%</p>
+                                <p style={{ width: '50%', fontSize: compact ? 26 : 36, textAlign: 'center', fontWeight: 'bold' }}>{round ? Math.round(percent) : percent}%</p>
                             ) : null
                         }
                     </div>
@@ -159,9 +161,10 @@ const Card = ({ }) => {
                         style={{
                             ...styles.Section,
                             display: config.show_stats === false ? 'none' : undefined,
-                            paddingLeft: vertical ? 32 : 16,
-                            paddingRight: vertical ? 32 : 32,
-                            width: vertical ? '100%' : '50%',
+                            paddingBottom: compact ? 10 : 32,
+                            paddingLeft: compact ? 8 : vertical ? 32 : 16,
+                            paddingRight: compact ? 12 : 32,
+                            width: vertical ? '100%' : compact ? '68%' : '50%',
                             height: vertical ? 'auto' : '100%'
                         }}
                     >

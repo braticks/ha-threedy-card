@@ -47,6 +47,7 @@ const Configurator = ({hass, config, threedy}) => {
         </div>)}
         <div style={row}><input aria-label="Naujo lauko raktas" placeholder="Papildomas laukas" value={newKey} onChange={e=>setNewKey(e.target.value)} style={{...control,flex:1}}/><button type="button" disabled={!newKey.trim() || keys.includes(newKey.trim())} onClick={()=>{const key=newKey.trim();update({sensors:{...current.sensors,[key]:{}},monitored:[...monitored,key]});setNewKey('');}}>Pridėti</button></div>
         <h3>Išvaizda</h3>
+        {check('Kompaktiškas režimas','compact')}
         {check('Visada rodyti išskleistą kortą','always_show')}
         {check('Rodyti antraštę','show_header',true)}
         {check('Rodyti informaciją','show_stats',true)}
