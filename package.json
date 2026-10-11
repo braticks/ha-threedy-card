@@ -1,6 +1,6 @@
 {
   "name": "ha-threedy-card",
-  "version": "2026.10.0-beta.1",
+  "version": "2026.10.0-beta.2",
   "description": "Home Assistant card for 3D printer status and management.",
   "main": "src/index.tsx",
   "repository": "https://github.com/braticks/ha-threedy-card",

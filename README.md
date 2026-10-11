@@ -1,6 +1,6 @@
 # Threedy — braticks fork
 
-Maintenance beta **2026.10.0-beta.1**. Fixes duration units and rounding, printer states/animations and layout; adds an enclosed CoreXY visual. Based on [xZetsubou/ha-threedy-card](https://github.com/xZetsubou/ha-threedy-card).
+Maintenance beta **2026.10.0-beta.2**. Fixes duration units and rounding, printer states/animations and layout; adds an enclosed CoreXY visual. Based on [xZetsubou/ha-threedy-card](https://github.com/xZetsubou/ha-threedy-card).
 
 [Elegoo configuration](examples/elegoo-centauri-carbon-2.yaml) · [Issue review and verification limits](ISSUE_REVIEW.md) · [Installation in Lithuanian](BETA_INSTALL_LT.md).
 
@@ -287,7 +287,7 @@ card:
 
 </details>
 
-## Maintenance beta (2026.10.0-beta.1)
+## Maintenance beta (2026.10.0-beta.2)
 
 See [ISSUE_REVIEW.md](ISSUE_REVIEW.md) for issue coverage and limitations, and [BETA_INSTALL_LT.md](BETA_INSTALL_LT.md) for manual beta installation. Upstream authors and MIT package metadata are retained.
 
@@ -305,3 +305,7 @@ New options:
 Datetime Elapsed sensors represent start times; datetime ETA/Remaining sensors represent finish times. Numeric sensors represent durations. `HH:MM[:SS]` strings are interpreted as durations. Unsupported/non-finite values show an em dash. Scale values above 1 clamp to 1; the viewport no longer grows in a ResizeObserver loop.
 
 Build and regression tests: `npm ci && npm test && npm run build`.
+
+### Visual editor (beta.2)
+
+The editor works with an empty base_entity and exposes field visibility, order, entity assignments, labels, attributes, precision and duration units. Existing custom sensor fields are preserved and editable; no OctoPrint auto-detection is required.

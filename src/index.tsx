@@ -87,6 +87,8 @@ class ThreedyCard extends HTMLElement {
     }
 
 
+    static getStubConfig() { return {type: "custom:threedy-card", name: "3D spausdintuvas", printer_type: "CoreXY", always_show: true, monitored: ["Status", "Remaining", "Hotend", "Bed"], sensors: {}}; }
+
     static getConfigElement() {
         return document.createElement('threedy-editor');
     }
